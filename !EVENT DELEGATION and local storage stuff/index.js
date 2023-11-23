@@ -43,3 +43,28 @@ addItems.addEventListener('submit', addItem);
 itemsList.addEventListener('click', toggleDone);
 // calling on page load
 populateList(items, itemsList);
+
+const slctBtn = document.querySelector('#slct-all');
+const remvBtn = document.querySelector('#remv-all');
+
+function selectAll() {
+    items.map(item => {
+        item.done = true;
+    })
+    
+    localStorage.setItem('items', JSON.stringify(items));
+    populateList(items, itemsList)
+}
+
+function removeAll() {
+    items.map(item => {
+        item.done = false;
+    })
+
+    localStorage.setItem('items', JSON.stringify(items));
+    populateList(items, itemsList);
+}
+
+
+slctBtn.addEventListener("click", selectAll);
+remvBtn.addEventListener("click", removeAll);
