@@ -25,7 +25,8 @@ slider.addEventListener('mouseup', () => {
 slider.addEventListener('mousemove', (e) => {
     if(!isDown) return;
     e.preventDefault(); // stops selecting of text or anything by default
-    const x = e.pageX - slider.offsetLeft;
+    const x = e.pageX - slider.offsetLeft; // removing the offset again here
     const walk = (x - startX) * 3; // this tells us how far have we moved from that initial space
-    slider.scrollLeft = scrollLeft - walk;
+    slider.scrollLeft = scrollLeft - walk; // we subtract walk from the amount we have already scrolled, this gives us normal drag effect, adding it will give us inverted scroll effect
+    // negative scroll takes us to right while positive scroll takes us to left
 });
