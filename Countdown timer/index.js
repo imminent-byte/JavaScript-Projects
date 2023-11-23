@@ -22,13 +22,13 @@ function timer(seconds) {
         
         displayTimeleft(secondsLeft);
     }, 1000)
-
 }
 
 function displayTimeleft(seconds) {
-    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
     const remainderSeconds = seconds % 60;
-    const display = `${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
+    const display = `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
     document.title = display;
     timerDisplay.textContent = display;
 }
@@ -37,8 +37,17 @@ function displayEndTime(timestamp) {
     const end = new Date(timestamp); // How we change raw timestamp of miliseconds (a number) into an actual date
     const hour = end.getHours();
     const minutes = end.getMinutes();
-    endTime.textContent = `Be Back At ${hour > 12 ? hour - 12 : hour}:${minutes < 10 ? '0' : ''}${minutes}`;
-}
+    const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const day = weekday[end.getDay()];
+    const date = end.getDate();
+    const month = end.getMonth();
+    const year = end.getFullYear();
+        endTime.textContent = `
+                Be Back on ${day} ${date} ${month} ${year} At ${hour}
+                :${minutes < 10 ? '0' : ''}
+                ${minutes}
+            `;
+} 
 
 function startTimer(){
     const seconds = parseInt(this.dataset.time);
