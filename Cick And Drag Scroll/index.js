@@ -1,7 +1,7 @@
 const slider = document.querySelector('.items');
 let isDown = false;
 let startX; // Where the user have done the first click down, the point from where the user has started dragging
-let scrollLeft;
+let scrollLeft; // How much we have currently scrolled to the left
 
 
 // we capture the values when mouse down then reference it when we mouse move
